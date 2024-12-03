@@ -6,14 +6,16 @@
 #include "MainMenu.h"
 #include <fstream>
 #include "Poziom1.h"
+#include "Poziom2.h"
+#include "Poziom3.h"
+#include "Poziom4.h"
+#include "Poziom5.h"
+#include "Poziom6.h"
 #include <windows.h>
 #include <SFML/Audio.hpp>
 
 using namespace std;
 using namespace sf;
-
-int width = 1100;
-int height = 825;
 
 
 ///Funkcja Main
@@ -40,10 +42,15 @@ int height = 825;
 **/
 void main()
 {
-	RenderWindow MENU(VideoMode(width, height), "Menu", Style::Default); // tworzy okno 
+	RenderWindow MENU(VideoMode(1100, 850), "Menu", Style::Default); // tworzy okno 
 	MENU.setFramerateLimit(60);  // set to jest od ilosci klatek na sekunde
 	MainMenu mainMenu(MENU.getSize().x, MENU.getSize().y);  ///tworzymy obiekt klasy MainManu
 	Poziom1* poziom1 = new Poziom1(); /// wskaznik na obiekt klasy 
+	Poziom2* poziom2 = new Poziom2();
+	Poziom3* poziom3 = new Poziom3();
+	Poziom4* poziom4 = new Poziom4();
+	Poziom5* poziom5 = new Poziom5();
+	Poziom6* poziom6 = new Poziom6();
 	SoundBuffer buffer; // od dzwieku 
 	buffer.loadFromFile("Audio/menuAudio.wav"); //dodoanie sciezki d dzwieku 
 	Sound sound;
@@ -52,19 +59,19 @@ void main()
 
 	//tlo menu
 	RectangleShape tloMenu;
-	tloMenu.setSize(Vector2f(width, height));  // wielkosc planszy 
+	tloMenu.setSize(Vector2f(1100, 850));  // wielkosc planszy 
 	Texture mainTlo;  //
 	mainTlo.loadFromFile("Textury/background.jpg");
 	tloMenu.setTexture(&mainTlo);
 	//tlo opcji 
 	RectangleShape tloOpcje;
-	tloOpcje.setSize(Vector2f(width, height));
+	tloOpcje.setSize(Vector2f(1100, 850));
 	Texture opcjeTlo;
 	opcjeTlo.loadFromFile("Textury/background3.jpg");
 	tloOpcje.setTexture(&opcjeTlo);
 	//tlo o grze
 	RectangleShape tloOGrze;
-	tloOGrze.setSize(Vector2f(width, height));
+	tloOGrze.setSize(Vector2f(1100, 850));
 	Texture oGrzeTlo;
 	oGrzeTlo.loadFromFile("Textury/background4.jpg");
 	tloOGrze.setTexture(&oGrzeTlo);
@@ -73,7 +80,7 @@ void main()
 
 	while (MENU.isOpen()) ///funkcja dzije sie tylko kiedy jestesmy w mennu
 	{
-		Event menuEvent; 
+		Event menuEvent;
 		while (MENU.pollEvent(menuEvent))
 		{
 			if (menuEvent.type == Event::Closed)
@@ -94,12 +101,37 @@ void main()
 				}
 				if (menuEvent.key.code == Keyboard::Return)
 				{
-					int x = mainMenu.MainMenuPressed();		
+					int x = mainMenu.MainMenuPressed();		///znajdz to jaksa zmienna w klasie  main menu .h			
 					if (x == 0)
 					{
 						sound.stop();
 
 						if (poziom1->Start() == -1)
+						{
+							continue;
+						}
+
+						if (poziom2->Start() == 2)
+						{
+							continue;
+						}
+
+						if (poziom3->Start() == 3)
+						{
+							continue;
+						}
+
+						if (poziom4->Start() == 4)
+						{
+							continue;
+						}
+
+						if (poziom5->Start() == 5)
+						{
+							continue;
+						}
+
+						if (poziom6->Start() == 6)
 						{
 							continue;
 						}
@@ -113,7 +145,7 @@ void main()
 					sound.play();
 					if (x == 1)
 					{
-						RenderWindow Options(VideoMode(width, height), "Opcje");
+						RenderWindow Options(VideoMode(1100, 850), "Opcje");
 						while (Options.isOpen())
 						{
 							Event aevent;
@@ -138,7 +170,7 @@ void main()
 					}
 					if (x == 2)
 					{
-						RenderWindow About(VideoMode(width, height), "O grze");
+						RenderWindow About(VideoMode(1100, 850), "O grze");
 						while (About.isOpen())
 						{
 							Event aevent;

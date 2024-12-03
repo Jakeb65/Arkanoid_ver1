@@ -16,11 +16,8 @@
 using namespace std;
 using namespace sf;
 
-int LevelWidth = 1100;
-int LevelHeight = 825;
-
 /// Szablon klasy
-/** 
+/**
 * Funkcja z 2 argumentami szablonowymi, uniwersalna funckja, pozwoli nam sprawdzać kolizje miedzy roznymi obiektami
 * Zwraca dana krawedz obiektu w pixelach
 */
@@ -53,7 +50,7 @@ bool collisionTest1(Paddle& paddle, Ball& ball)
         ball.moveUp();
         break;
     }
-    
+
 }
 /// collisionTest1
 /**
@@ -97,7 +94,7 @@ bool collisionTest1(Block& block, Ball& ball)
 */
 bool isGameOver1(Ball& ball)
 {
-    if (ball.bottom() >= LevelHeight)
+    if (ball.bottom() >= 850)
     {
         return true;
     }
@@ -116,7 +113,7 @@ bool isGameOver1(Ball& ball)
 * Ustalenie limitu klatek na sekunde
 * Stworzenie eventu
 * Stworzenie zawartosci bloczkow, okreslaja ich liczbe i wielkosc
-* Stworzenie wektora obiektu klasy 
+* Stworzenie wektora obiektu klasy
 * Implementacja liczby blokow
 * Petla for rysujaca blocki na ekranie
 * Stworzenie tekstur i dodanie kilku tekstur tla
@@ -150,8 +147,8 @@ int Poziom1::Start()
 {
     Ball ball(300, 400);
     Paddle paddle(400, 790);
-    RenderWindow window(VideoMode(LevelWidth, LevelHeight), "Arcanoid - Poziom 1");
-    
+    RenderWindow window(VideoMode(1100, 850), "Arcanoid - Poziom 1");
+
     window.setFramerateLimit(80); // Frame rate pozwala na zwiększenie tempa rozgrywki w tym prędkości piłki czy paletki
     Event event;
     unsigned blocksX{ 8 }, blocksY{ 6 }, blockWidth{ 70 }, blockHeight{ 30 };
@@ -170,20 +167,32 @@ int Poziom1::Start()
         }
     }
 
-
-
     Texture Poziom1;
     Poziom1.loadFromFile("Textury/level1.png");
 
     Sprite sprite1;
     sprite1.setTexture(Poziom1);
 
+    RectangleShape tloPrzegrana;
+    tloPrzegrana.setSize(Vector2f(1100, 850));
+    Texture mainPrzegrana;
+    mainPrzegrana.loadFromFile("Textury/przegrana.png");
+    tloPrzegrana.setTexture(&mainPrzegrana);
+
+    RectangleShape tloWygrana;
+    tloWygrana.setSize(Vector2f(1100, 850));
+    Texture mainWygrana;
+    mainWygrana.loadFromFile("Textury/wygrana.png");
+    tloWygrana.setTexture(&mainWygrana);
+
+    Sprite sprite11;
+    Sprite sprite111;
     SoundBuffer buffer;
     buffer.loadFromFile("Audio/level1Audio.wav");
     Sound sound;
     sound.setBuffer(buffer);
     sound.play();
-    
+
     while (window.isOpen())
     {
         window.clear();
@@ -195,7 +204,7 @@ int Poziom1::Start()
             window.close();
             break;
         }
-    
+
         ball.update();
         paddle.update();
         collisionTest1(paddle, ball);
@@ -203,7 +212,37 @@ int Poziom1::Start()
         {
             sound.stop();
             window.close();
-
+            RenderWindow Super(VideoMode(1100, 850), "Przegrana");
+            SoundBuffer bufferL;
+            bufferL.loadFromFile("Audio/koniecAudio.wav");
+            Sound soundL;
+            soundL.setBuffer(bufferL);
+            soundL.setPlayingOffset(sf::seconds(10.f));
+            soundL.play();
+            while (Super.isOpen())
+            {
+                while (Super.isOpen())
+                {
+                    Event aevent;
+                    while (Super.pollEvent(aevent))
+                    {
+                        if (aevent.type == Event::Closed)
+                        {
+                            Super.close();
+                        }
+                        if (aevent.type == Event::KeyPressed)
+                        {
+                            if (aevent.key.code == Keyboard::Escape)
+                            {
+                                Super.close();
+                            }
+                        }
+                    }
+                    Super.clear();
+                    Super.draw(tloPrzegrana);
+                    Super.display();
+                }
+            }
             return -1;
         }
 
@@ -224,11 +263,39 @@ int Poziom1::Start()
         {
             sound.stop();
             window.close();
+            RenderWindow Super(VideoMode(1100, 850), "Wygrana");
+            SoundBuffer bufferW;
+            bufferW.loadFromFile("Audio/wygranaAudio.wav");
+            Sound soundW;
+            soundW.setBuffer(bufferW);
+            soundW.play();
 
+            while (Super.isOpen())
+            {
+                Event aevent;
+                while (Super.pollEvent(aevent))
+                {
+                    if (aevent.type == Event::Closed)
+                    {
+                        Super.close();
+                    }
+                    if (aevent.type == Event::KeyPressed)
+                    {
+                        if (aevent.key.code == Keyboard::Escape)
+                        {
+                            Super.close();
+                        }
+                    }
+                }
+                Super.clear();
+                Super.draw(tloWygrana);
+                Super.display();
+
+            }
             return 2;
         }
-        
-        
+
+
 
         window.draw(ball);
         window.draw(paddle);
@@ -237,7 +304,7 @@ int Poziom1::Start()
         {
             window.draw(block);
         }
-        
+
         window.display();
     }
 }

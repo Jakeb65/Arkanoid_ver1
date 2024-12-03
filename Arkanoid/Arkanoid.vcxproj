@@ -157,6 +157,11 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="OknoMenu.cpp" />
     <ClCompile Include="Paddle.cpp" />
+    <ClCompile Include="Poziom2.cpp" />
+    <ClCompile Include="Poziom3.cpp" />
+    <ClCompile Include="Poziom4.cpp" />
+    <ClCompile Include="Poziom5.cpp" />
+    <ClCompile Include="Poziom6.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ball.h" />
@@ -164,6 +169,11 @@
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Poziom1.h" />
+    <ClInclude Include="Poziom2.h" />
+    <ClInclude Include="Poziom3.h" />
+    <ClInclude Include="Poziom4.h" />
+    <ClInclude Include="Poziom5.h" />
+    <ClInclude Include="Poziom6.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

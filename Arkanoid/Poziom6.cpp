@@ -35,20 +35,8 @@ bool collisionTest6(Paddle& paddle, Ball& ball)
     if (!isIntersecting6(paddle, ball))
         return false;
 
-    srand(time(NULL));
-    int liczba = (rand() % 3) + 1;
-    switch (liczba)
-    {
-    case 1:
-        ball.moveUp();
-        break;
-    case 2:
-        ball.moveUp();
-        break;
-    case 3:
-        ball.moveUp();
-        break;
-    }
+    ball.update(paddle); // Wywo³anie funkcji update z obiektem Paddle
+    return true;
 
 }
 /// collisionTest6
@@ -106,7 +94,7 @@ bool collisionTest6(Block& block, Ball& ball)
 */
 bool isGameOver6(Ball& ball)
 {
-    if (ball.bottom() == 600)
+    if (ball.bottom() >= 850) // SprawdŸ, czy pi³ka znajduje siê poni¿ej dolnej krawêdzi okna
     {
         return true;
     }
@@ -157,20 +145,20 @@ bool isGameOver6(Ball& ball)
 */
 int Poziom6::Start()
 {
-    Ball ball(100, 270);
-    Paddle paddle(400, 550);
-    RenderWindow window(VideoMode(800, 600), "Arcanoid - Poziom 6");
+    Ball ball(300, 400);
+    Paddle paddle(400, 790);
+    RenderWindow window(VideoMode(1100, 850), "Arcanoid - Poziom 6");
     window.setFramerateLimit(60);
     Event event;
 
     RectangleShape tloPrzegrana;
-    tloPrzegrana.setSize(Vector2f(800, 600));
+    tloPrzegrana.setSize(Vector2f(1100, 850));
     Texture mainPrzegrana;
     mainPrzegrana.loadFromFile("Textury/przegrana.png");
     tloPrzegrana.setTexture(&mainPrzegrana);
 
     RectangleShape tloWygrana;
-    tloWygrana.setSize(Vector2f(800, 600));
+    tloWygrana.setSize(Vector2f(1100, 850));
     Texture mainWygrana;
     mainWygrana.loadFromFile("Textury/wygrana.png");
     tloWygrana.setTexture(&mainWygrana);
@@ -183,15 +171,22 @@ int Poziom6::Start()
     sound.setBuffer(buffer);
     sound.play();
 
-    unsigned blocksX{ 6 }, blocksY{ 4 }, blockWidth{ 30 }, blockHeight{ 15 };
+    window.setFramerateLimit(80); // Frame rate pozwala na zwiêkszenie tempa rozgrywki w tym prêdkoœci pi³ki czy paletki
+    unsigned blocksX{ 8 }, blocksY{ 6 }, blockWidth{ 70 }, blockHeight{ 30 };
     vector<Block> blocks;
     int numberOfBlocks = blocksX * blocksY;
+    int destroyedBlocks = 0; // Licznik zniszczonych bloków
+    bool isFlipped = false; // Flaga odwrócenia ekranu
 
     for (int i = 0; i < blocksY; i++)
     {
         for (int j = 0; j < blocksX; j++)
         {
-            blocks.emplace_back((j + 1) * (blockWidth + 75), (i + 2) * (blockHeight + 30), blockWidth, blockHeight);
+            // Tworzenie bloku tylko na co drugim polu
+            if ((i + j) % 2 == 0)  // co drugie pole tworzy blok, reszta jest pusta
+            {
+                blocks.emplace_back((j + 1) * (blockWidth + 50), (i + 1) * (blockHeight + 25), blockWidth, blockHeight);
+            }
         }
     }
 
@@ -200,9 +195,13 @@ int Poziom6::Start()
     Sprite sprite6;
     sprite6.setTexture(Poziom6);
 
+    // Utwórz widok
+    View view = window.getDefaultView();
+
     while (window.isOpen())
     {
         window.clear();
+        window.setView(view); // Ustaw widok
         window.draw(sprite6);
         window.pollEvent(event);
 
@@ -212,14 +211,14 @@ int Poziom6::Start()
             break;
         }
 
-        ball.update();
         paddle.update();
-        collisionTest6(paddle, ball);
+        ball.update(paddle); // Przekazanie obiektu Paddle do funkcji update
+
         if (isGameOver6(ball) == true)
         {
             sound.stop();
             window.close();
-            RenderWindow Super(VideoMode(800, 600), "Przegrana");
+            RenderWindow Super(VideoMode(1100, 850), "Przegrana");
             SoundBuffer bufferL;
             bufferL.loadFromFile("Audio/koniecAudio.wav");
             Sound soundL;
@@ -256,6 +255,7 @@ int Poziom6::Start()
             if (collisionTest6(block, ball))
             {
                 numberOfBlocks--;
+                destroyedBlocks++; // Zwiêksz licznik zniszczonych bloków
                 break;
             }
         }
@@ -263,11 +263,19 @@ int Poziom6::Start()
         auto iterator = remove_if(begin(blocks), end(blocks), [](Block& block) {return block.isDestroyed(); });
         blocks.erase(iterator, end(blocks));
 
+        // SprawdŸ, czy liczba zniszczonych bloków osi¹gnê³a 10, i odwróæ widok
+        if (destroyedBlocks >= 10 && !isFlipped)
+        {
+            view.setCenter(view.getSize() / 2.0f);
+            view.setRotation(180.0f); // Obróæ widok o 180 stopni
+            isFlipped = true; // Ustaw flagê odwrócenia ekranu
+        }
+
         if (numberOfBlocks == 0)
         {
             sound.stop();
             window.close();
-            RenderWindow Super(VideoMode(800, 600), "Wygrana");
+            RenderWindow Super(VideoMode(1100, 850), "Wygrana");
             SoundBuffer bufferW;
             bufferW.loadFromFile("Audio/wygranaAudio.wav");
             Sound soundW;
@@ -309,3 +317,10 @@ int Poziom6::Start()
         window.display();
     }
 }
+
+
+
+
+
+
+

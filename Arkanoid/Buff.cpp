@@ -1,63 +1,74 @@
-#pragma once
-#include <SFML/Graphics.hpp>
-
-using namespace sf;
-
-class Buff : public Drawable
-{
-public:
-    enum Type { Speed, Size, ExtraLife, WiderPaddle, MultipleBalls };
-
-    Buff(Type type, float x, float y);
-
-    void draw(RenderTarget& target, RenderStates state) const override;
-    Vector2f getPosition() const;
-    Type getType() const;
-    FloatRect getBounds() const;
-    void update(); // Add this method to update the position
-    bool operator==(const Buff& other) const;
-
-private:
-    RectangleShape shape;
-    Type type;
-    float speed{ 2.0f }; // Speed at which the buff falls
-};
-
 #include "Buff.h"
 
-Buff::Buff(Type type, float x, float y) : type(type)
+Buff::Buff(float t_X, float t_Y, BuffType t_type)
+    : type(t_type), active(true)
 {
-    shape.setSize(Vector2f(20, 20)); // Example size
-    shape.setPosition(x, y);
-    // Set the shape color or texture based on the buff type
+    shape.setPosition(t_X, t_Y);
+    shape.setRadius(10.0f);
+    shape.setFillColor(Color::Yellow);
+    shape.setOrigin(10.0f, 10.0f);
 }
 
-void Buff::draw(RenderTarget& target, RenderStates states) const
+Buff::Buff(const Buff& other)
+    : shape(other.shape), type(other.type), active(other.active), clock(other.clock), duration(other.duration)
 {
-    target.draw(shape, states);
 }
 
-Vector2f Buff::getPosition() const
+Buff& Buff::operator=(const Buff& other)
 {
-    return shape.getPosition();
-}
-
-Buff::Type Buff::getType() const
-{
-    return type;
-}
-
-FloatRect Buff::getBounds() const
-{
-    return shape.getGlobalBounds();
+    if (this != &other)
+    {
+        shape = other.shape;
+        type = other.type;
+        active = other.active;
+        clock = other.clock;
+        // duration jest const, wiêc nie trzeba go przypisywaæ
+    }
+    return *this;
 }
 
 void Buff::update()
 {
-    shape.move(0, speed); // Move the buff downwards
+    if (clock.getElapsedTime().asSeconds() >= duration)
+    {
+        active = false;
+    }
 }
 
-bool Buff::operator==(const Buff& other) const
+bool Buff::isActive() const
 {
-    return this->type == other.type && this->shape.getPosition() == other.shape.getPosition();
+    return active;
+}
+
+BuffType Buff::getType() const
+{
+    return type;
+}
+
+float Buff::left() const
+{
+    return shape.getPosition().x - shape.getRadius();
+}
+
+float Buff::right() const
+{
+    return shape.getPosition().x + shape.getRadius();
+}
+
+float Buff::top() const
+{
+    return shape.getPosition().y - shape.getRadius();
+}
+
+float Buff::bottom() const
+{
+    return shape.getPosition().y + shape.getRadius();
+}
+
+void Buff::draw(RenderTarget& target, RenderStates state) const
+{
+    if (active)
+    {
+        target.draw(shape, state);
+    }
 }

@@ -1,22 +1,55 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 
 using namespace sf;
 
-class Buff : public Drawable // Dodaj dziedziczenie po Drawable
+enum class BuffType
+{
+    SpeedUp,
+    SpeedDown,
+    SizeUp,
+    SizeDown,
+    ReverseControls,
+    BallSpeedUp,
+    PaddleSpeedUp,
+    ScreenShake,
+    InvisibleBall,
+    DoubleBall,
+    BallSizeUp,
+    BallSizeDown,
+    PaddleSpeedDown,
+    ExtraLife,
+    ScoreMultiplier,
+    Count
+};
+
+class Buff : public Drawable
 {
 public:
-    enum Type { Speed, Size, ExtraLife, WiderPaddle, MultipleBalls };
+    Buff(float t_X, float t_Y, BuffType type);
+    ~Buff() = default;
 
-    Buff(Type type, float x, float y);
+    Buff(const Buff& other); // Deklaracja konstruktora kopiuj¹cego
+    Buff& operator=(const Buff& other); // Deklaracja operatora przypisania
 
-    void draw(RenderTarget& target, RenderStates state) const override; // Dodaj override
-    Vector2f getPosition() const;
-    Type getType() const;
-    FloatRect getBounds() const;
-    bool operator==(const Buff& other) const; // Dodaj deklaracjê operatora ==
+    void update();
+    bool isActive() const;
+    BuffType getType() const;
+
+    float left() const;
+    float right() const;
+    float top() const;
+    float bottom() const;
 
 private:
-    RectangleShape shape;
-    Type type;
+    CircleShape shape;
+    BuffType type;
+    bool active;
+    Clock clock;
+    const float duration{ 3.0f }; // Czas trwania buffa w sekundach
+
+    void draw(RenderTarget& target, RenderStates state) const override;
 };
+
+

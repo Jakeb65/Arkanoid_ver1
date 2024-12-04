@@ -9,6 +9,8 @@
 #include "Block.h"
 #include "MainMenu.h"
 #include "Poziom2.h"
+#include <windows.h>
+#include <cstdlib>
 #include <SFML/Audio.hpp>
 
 using namespace std;
@@ -33,20 +35,8 @@ bool collisionTest2(Paddle& paddle, Ball& ball)
     if (!isIntersecting2(paddle, ball))
         return false;
 
-    srand(time(NULL));
-    int liczba = (rand() % 3) + 1;
-    switch (liczba)
-    {
-    case 1:
-        ball.moveUp();
-        break;
-    case 2:
-        ball.moveUp();
-        break;
-    case 3:
-        ball.moveUp();
-        break;
-    }
+    ball.update(paddle); // Wywołanie funkcji update z obiektem Paddle
+    return true;
 
 }
 /// collisionTest2
@@ -91,7 +81,7 @@ bool collisionTest2(Block& block, Ball& ball)
 */
 bool isGameOver2(Ball& ball)
 {
-    if (ball.bottom() == 600)
+    if (ball.bottom() == 850)
     {
         return true;
     }
@@ -138,20 +128,20 @@ bool isGameOver2(Ball& ball)
 */
 int Poziom2::Start()
 {
-    Ball ball(300, 200);
-    Paddle paddle(400, 550);
-    RenderWindow window(VideoMode(800, 600), "Arcanoid - Poziom 2");
+    Ball ball(300, 400);
+    Paddle paddle(400, 790);
+    RenderWindow window(VideoMode(1100, 850), "Arcanoid - Poziom 2");
     window.setFramerateLimit(60);
     Event event;
 
     RectangleShape tloPrzegrana;
-    tloPrzegrana.setSize(Vector2f(800, 600));
+    tloPrzegrana.setSize(Vector2f(1100, 850));
     Texture mainPrzegrana;
     mainPrzegrana.loadFromFile("Textury/przegrana.png");
     tloPrzegrana.setTexture(&mainPrzegrana);
 
     RectangleShape tloWygrana;
-    tloWygrana.setSize(Vector2f(800, 600));
+    tloWygrana.setSize(Vector2f(1100, 850));
     Texture mainWygrana;
     mainWygrana.loadFromFile("Textury/wygrana.png");
     tloWygrana.setTexture(&mainWygrana);
@@ -164,16 +154,27 @@ int Poziom2::Start()
     sound.setBuffer(buffer);
     sound.play();
 
-    unsigned blocksX{ 9 }, blocksY{ 5 }, blockWidth{ 60 }, blockHeight{ 15 };
+    window.setFramerateLimit(80); // Frame rate pozwala na zwiększenie tempa rozgrywki w tym prędkości piłki czy paletki
+    unsigned blocksX{ 8 }, blocksY{ 6 }, blockWidth{ 70 }, blockHeight{ 30 };
     vector<Block> blocks;
-    int numberOfBlocks = blocksX * blocksY;
+    int finalHp = 2;
+    int numberOfBlocks = blocksX * blocksY * finalHp;
+    int hp = 0;
 
-    for (int i = 0; i < blocksY; i++)
+    while (hp < finalHp)
     {
-        for (int j = 0; j < blocksX; j++)
+        for (int i = 0; i < blocksY; i++)
         {
-            blocks.emplace_back((j + 1) * (blockWidth + 20), (i + 2) * (blockHeight + 15), blockWidth, blockHeight);
+            for (int j = 0; j < blocksX; j++)
+            {
+                // Tworzenie bloku tylko na co drugim polu
+                if ((i + j) % 2 == 0)  // co drugie pole tworzy blok, reszta jest pusta
+                {
+                    blocks.emplace_back((j + 1) * (blockWidth + 50), (i + 1) * (blockHeight + 25), blockWidth, blockHeight);
+                }
+            }
         }
+        hp++;
     }
 
     Texture Poziom2;
@@ -193,14 +194,14 @@ int Poziom2::Start()
             break;
         }
 
-        ball.update();
         paddle.update();
-        collisionTest2(paddle, ball);
+        ball.update(paddle); // Przekazanie obiektu Paddle do funkcji update
+
         if (isGameOver2(ball) == true)
         {
             sound.stop();
             window.close();
-            RenderWindow Super(VideoMode(800, 600), "Przegrana");
+            RenderWindow Super(VideoMode(1100, 850), "Przegrana");
             SoundBuffer bufferL;
             bufferL.loadFromFile("Audio/koniecAudio.wav");
             Sound soundL;
@@ -238,7 +239,6 @@ int Poziom2::Start()
             return 0;
         }
 
-
         for (auto& block : blocks)
         {
             if (collisionTest2(block, ball))
@@ -255,7 +255,7 @@ int Poziom2::Start()
         {
             sound.stop();
             window.close();
-            RenderWindow Super(VideoMode(800, 600), "Wygrana");
+            RenderWindow Super(VideoMode(1100, 850), "Wygrana");
             SoundBuffer bufferW;
             bufferW.loadFromFile("Audio/wygranaAudio.wav");
             Sound soundW;
@@ -286,7 +286,6 @@ int Poziom2::Start()
             return 3;
         }
 
-
         window.draw(ball);
         window.draw(paddle);
 
@@ -296,7 +295,7 @@ int Poziom2::Start()
         }
 
         window.display();
-
     }
-
 }
+
+

@@ -1,24 +1,38 @@
-/** \file Poziom1.h
-* Odpowiada za pierwszy poziom
+///Poziom1
+/**
+ * Plik naglowkowy zawierajacy klasy
 */
 #pragma once
-#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "Ball.h"
-#include "Paddle.h"
-#include "Block.h"
-#include "MainMenu.h"
-#include <windows.h>
-#include <cstdlib>
-#include <SFML/Audio.hpp>
-#include "Buff.h"
-#include <vector>
-#include <algorithm>
-#include <cstdlib>
-#include <ctime>
+#include "Buff.h" // Dodano nag³ówek Buff
 
-class Poziom1 {
+using namespace std;
+using namespace sf;
+
+///Poziom1
+/**
+ * Klasa zawiera
+ * Funkcja inicjalizuje funkcje start
+ * Destruktor
+*/
+template <class T1, class T2> bool isIntersecting1(T1& A, T2& B)
+{
+		return A.right() >= B.left() && A.left() <= B.right() && A.bottom() >= B.top() && A.top() <= B.bottom();
+
+}
+
+class Poziom1
+{
 public:
-    int Start();
-    void applyBuff(const Buff& buff, Paddle& paddle, Ball& ball); // Dodaj tê liniê
+	int Start();
+
+	~Poziom1();
+
+private:
+	vector<Buff> buffs; // Wektor buffów
 };
+
+
+
+
+

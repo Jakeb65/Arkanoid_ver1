@@ -169,9 +169,9 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="Buff.h" />
     <ClInclude Include="MainMenu.h" />
-    <ClInclude Include="Poziom2.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Poziom1.h" />
+    <ClInclude Include="Poziom2.h" />
     <ClInclude Include="Poziom3.h" />
     <ClInclude Include="Poziom4.h" />
     <ClInclude Include="Poziom5.h" />

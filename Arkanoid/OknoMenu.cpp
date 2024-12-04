@@ -42,7 +42,7 @@ using namespace sf;
 **/
 void main()
 {
-	RenderWindow MENU(VideoMode(800, 600), "Menu", Style::Default); // tworzy okno 
+	RenderWindow MENU(VideoMode(1100, 850), "Menu", Style::Default); // tworzy okno 
 	MENU.setFramerateLimit(60);  // set to jest od ilosci klatek na sekunde
 	MainMenu mainMenu(MENU.getSize().x, MENU.getSize().y);  ///tworzymy obiekt klasy MainManu
 	Poziom1* poziom1 = new Poziom1(); /// wskaznik na obiekt klasy 
@@ -59,19 +59,19 @@ void main()
 
 	//tlo menu
 	RectangleShape tloMenu;
-	tloMenu.setSize(Vector2f(800, 600));  // wielkosc planszy 
+	tloMenu.setSize(Vector2f(1100, 850));  // wielkosc planszy 
 	Texture mainTlo;  //
 	mainTlo.loadFromFile("Textury/background.jpg");
 	tloMenu.setTexture(&mainTlo);
 	//tlo opcji 
 	RectangleShape tloOpcje;
-	tloOpcje.setSize(Vector2f(800, 600));
+	tloOpcje.setSize(Vector2f(1100, 850));
 	Texture opcjeTlo;
 	opcjeTlo.loadFromFile("Textury/background3.jpg");
 	tloOpcje.setTexture(&opcjeTlo);
 	//tlo o grze
 	RectangleShape tloOGrze;
-	tloOGrze.setSize(Vector2f(800, 600));
+	tloOGrze.setSize(Vector2f(1100, 850));
 	Texture oGrzeTlo;
 	oGrzeTlo.loadFromFile("Textury/background4.jpg");
 	tloOGrze.setTexture(&oGrzeTlo);
@@ -80,7 +80,7 @@ void main()
 
 	while (MENU.isOpen()) ///funkcja dzije sie tylko kiedy jestesmy w mennu
 	{
-		Event menuEvent; 
+		Event menuEvent;
 		while (MENU.pollEvent(menuEvent))
 		{
 			if (menuEvent.type == Event::Closed)
@@ -136,11 +136,16 @@ void main()
 							continue;
 						}
 
+						else
+						{
+							break;
+						}
+
 					}
 					sound.play();
 					if (x == 1)
 					{
-						RenderWindow Options(VideoMode(800, 600), "Opcje");
+						RenderWindow Options(VideoMode(1100, 850), "Opcje");
 						while (Options.isOpen())
 						{
 							Event aevent;
@@ -165,7 +170,7 @@ void main()
 					}
 					if (x == 2)
 					{
-						RenderWindow About(VideoMode(800, 600), "O grze");
+						RenderWindow About(VideoMode(1100, 850), "O grze");
 						while (About.isOpen())
 						{
 							Event aevent;

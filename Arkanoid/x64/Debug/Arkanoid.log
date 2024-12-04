@@ -1,77 +1,64 @@
 ﻿  Buff.cpp
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.h(6,7): error C2011: "Buff'': "class" wpisz ponownie definicję
-  (kompilowanie pliku źródłowego „Buff.cpp”)
-      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
-      zobacz deklarację „Buff”
-  
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(28,7): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
-      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
-      zobacz deklarację „Buff”
-  
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(28,7): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(28,12): error C2065: "Type": niezadeklarowany identyfikator
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(28,17): error C2146: błąd składniowy: brakuje „)” przed identyfikatorem „type”
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(28,43): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(29,1): error C2059: błąd składniowy: „{”
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(29,1): error C2143: błąd składniowy: brakuje „;” przed „{”
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(29,1): error C2447: "{": brak nagłówka funkcji (stary styl formalnej listy?)
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(35,12): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
-      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
-      zobacz deklarację „Buff”
-  
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(35,12): error C2270: "draw": modyfikatory niedozwolone dla funkcji niebędących funkcjami członkowskimi
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(37,17): error C2065: "shape": niezadeklarowany identyfikator
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(40,16): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
-      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
-      zobacz deklarację „Buff”
-  
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(40,16): error C2270: "getPosition": modyfikatory niedozwolone dla funkcji niebędących funkcjami członkowskimi
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(42,12): error C2065: "shape": niezadeklarowany identyfikator
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(45,7): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
-      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
-      zobacz deklarację „Buff”
-  
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(45,18): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
-      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
-      zobacz deklarację „Buff”
-  
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(45,7): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(45,18): error C2146: błąd składniowy: brakuje „;” przed identyfikatorem „getType”
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(46,1): error C2143: błąd składniowy: brakuje „;” przed „{”
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(46,1): error C2447: "{": brak nagłówka funkcji (stary styl formalnej listy?)
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(50,17): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
-      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
-      zobacz deklarację „Buff”
-  
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(50,17): error C2270: "getBounds": modyfikatory niedozwolone dla funkcji niebędących funkcjami członkowskimi
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(52,12): error C2065: "shape": niezadeklarowany identyfikator
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(55,12): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
-      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
-      zobacz deklarację „Buff”
-  
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(57,5): error C2065: "shape": niezadeklarowany identyfikator
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(57,19): error C2065: "speed": niezadeklarowany identyfikator
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(60,12): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
-      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
-      zobacz deklarację „Buff”
-  
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(60,12): error C2270: "==": modyfikatory niedozwolone dla funkcji niebędących funkcjami członkowskimi
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(62,12): error C2355: „this”: Można tworzyć odwołania wyłącznie wewnątrz niestatycznych funkcji składowych lub niestatycznych inicjatorów składowych danych
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(62,26): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
-      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
-      zobacz deklarację „Buff”
-  
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(62,40): error C2355: „this”: Można tworzyć odwołania wyłącznie wewnątrz niestatycznych funkcji składowych lub niestatycznych inicjatorów składowych danych
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(62,69): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
-      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
-      zobacz deklarację „Buff”
-  
   Poziom1.cpp
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Poziom1.cpp(44,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Poziom1.cpp(184,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Poziom1.cpp(186,27): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Poziom1.cpp(232,18): error C2039: „update”: nie jest składową elementu „Buff”
-      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.h(6,7):
-      zobacz deklarację „Buff”
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\Poziom1.cpp(124,68): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\Poziom1.cpp(124,68): warning C4244:         with
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\Poziom1.cpp(124,68): warning C4244:         [
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\Poziom1.cpp(124,68): warning C4244:             T=float
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\Poziom1.cpp(124,68): warning C4244:         ]
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\Poziom1.cpp(124,51): warning C4244: "argument": konwersja z "int" do "T", możliwa utrata danych
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\Poziom1.cpp(124,51): warning C4244:         with
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\Poziom1.cpp(124,51): warning C4244:         [
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\Poziom1.cpp(124,51): warning C4244:             T=float
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\Poziom1.cpp(124,51): warning C4244:         ]
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\Poziom1.cpp(228,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\Poziom1.cpp(230,27): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+F:\VS\VC\Tools\MSVC\14.42.34433\include\xmemory(700,103): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
+  (kompilowanie pliku źródłowego „Poziom1.cpp”)
+      F:\VS\VC\Tools\MSVC\14.42.34433\include\xmemory(700,103):
+      kontekst tworzenia wystąpienia szablonu (najpierw najstarszy) to
+          C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\Poziom1.cpp(234,24):
+          zobacz odwołanie do kompilowanego tworzenia wystąpienia „void std::vector<Block,std::allocator<Block>>::emplace_back<unsigned int,unsigned int,unsigned int&,unsigned int&>(unsigned int &&,unsigned int &&,unsigned int &,unsigned int &)” funkcji szablon
+          F:\VS\VC\Tools\MSVC\14.42.34433\include\vector(858,24):
+          zobacz odwołanie do kompilowanego tworzenia wystąpienia „_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_one_at_back<unsigned int,unsigned int,unsigned int&,unsigned int&>(unsigned int &&,unsigned int &&,unsigned int &,unsigned int &)” funkcji szablon
+          with
+          [
+              _Ty=Block
+          ]
+          F:\VS\VC\Tools\MSVC\14.42.34433\include\vector(776,20):
+          zobacz odwołanie do kompilowanego tworzenia wystąpienia „_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<unsigned int,unsigned int,unsigned int&,unsigned int&>(unsigned int &&,unsigned int &&,unsigned int &,unsigned int &)” funkcji szablon
+          with
+          [
+              _Ty=Block
+          ]
+          F:\VS\VC\Tools\MSVC\14.42.34433\include\vector(794,27):
+          zobacz odwołanie do kompilowanego tworzenia wystąpienia „void std::_Default_allocator_traits<_Alloc>::construct<_Ty,unsigned int,unsigned int,unsigned int&,unsigned int&>(_Alloc &,_Objty *const ,unsigned int &&,unsigned int &&,unsigned int &,unsigned int &)” funkcji szablon
+          with
+          [
+              _Alloc=std::allocator<Block>,
+              _Ty=Block,
+              _Objty=Block
+          ]
   
+F:\VS\VC\Tools\MSVC\14.42.34433\include\xmemory(700,103): warning C4244: "argument": konwersja z "_Ty" do "float", możliwa utrata danych
+F:\VS\VC\Tools\MSVC\14.42.34433\include\xmemory(700,103): warning C4244:         with
+F:\VS\VC\Tools\MSVC\14.42.34433\include\xmemory(700,103): warning C4244:         [
+F:\VS\VC\Tools\MSVC\14.42.34433\include\xmemory(700,103): warning C4244:             _Ty=unsigned int
+F:\VS\VC\Tools\MSVC\14.42.34433\include\xmemory(700,103): warning C4244:         ]
+  (kompilowanie pliku źródłowego „Poziom1.cpp”)
+  
+  ball.cpp
+  OknoMenu.cpp
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\OknoMenu.cpp(43,6): warning C4326: zwracany typ "main" powinien być "int" zamiast "void"
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\OknoMenu.cpp(47,52): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\OknoMenu.cpp(47,52): warning C4244:         with
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\OknoMenu.cpp(47,52): warning C4244:         [
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\OknoMenu.cpp(47,52): warning C4244:             T=unsigned int
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\OknoMenu.cpp(47,52): warning C4244:         ]
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\OknoMenu.cpp(47,34): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\OknoMenu.cpp(47,34): warning C4244:         with
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\OknoMenu.cpp(47,34): warning C4244:         [
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\OknoMenu.cpp(47,34): warning C4244:             T=unsigned int
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\OknoMenu.cpp(47,34): warning C4244:         ]
   Generowanie kodu...
+C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\Arkanoid\Poziom1.cpp(368,1): warning C4715: "Poziom1::Start”: niewszystkie ścieżki kodu zwracają wartość
+  Arkanoid.vcxproj -> C:\Users\Savi\Desktop\Arkanoid_ver1-test\Arkanoid_ver1-test\x64\Debug\Arkanoid.exe

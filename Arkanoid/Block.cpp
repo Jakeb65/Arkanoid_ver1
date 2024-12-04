@@ -21,6 +21,15 @@ Block::Block(float t_X, float t_Y, float t_Width, float t_Height)
 	shape.setOrigin(t_Width / 2.f, t_Height / 2.f);
 }
 
+///Destruktor
+/**
+* Definicja destruktora klasy Block
+*/
+Block::~Block()
+{
+	// Kod czyszczący, jeśli jest potrzebny
+}
+
 ///draw
 /**
 * Funkcja rysujaca blok

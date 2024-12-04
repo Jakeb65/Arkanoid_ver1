@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Buff.cpp" />
     <ClCompile Include="Poziom1.cpp" />
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="Block.cpp" />
@@ -166,6 +167,7 @@
   <ItemGroup>
     <ClInclude Include="ball.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="Buff.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Poziom1.h" />

@@ -35,20 +35,9 @@ bool collisionTest5(Paddle& paddle, Ball& ball)
     if (!isIntersecting5(paddle, ball))
         return false;
 
-    srand(time(NULL));
-    int liczba = (rand() % 3) + 1;
-    switch (liczba)
-    {
-    case 1:
-        ball.moveUp();
-        break;
-    case 2:
-        ball.moveUp();
-        break;
-    case 3:
-        ball.moveUp();
-        break;
-    }
+    ball.update(paddle); // Wywo³anie funkcji update z obiektem Paddle
+    return true; 
+    
 
 }
 /// collisionTest5
@@ -200,9 +189,9 @@ int Poziom5::Start()
             break;
         }
 
-        ball.update();
         paddle.update();
-        collisionTest5(paddle, ball);
+        ball.update(paddle); // Przekazanie obiektu Paddle do funkcji update
+
         if (isGameOver5(ball) == true)
         {
             sound.stop();
@@ -238,7 +227,6 @@ int Poziom5::Start()
             exit(1);
             return 0;
         }
-
 
         for (auto& block : blocks)
         {
@@ -296,7 +284,8 @@ int Poziom5::Start()
         }
 
         window.display();
-
     }
-
 }
+
+
+

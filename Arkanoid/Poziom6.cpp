@@ -35,20 +35,8 @@ bool collisionTest6(Paddle& paddle, Ball& ball)
     if (!isIntersecting6(paddle, ball))
         return false;
 
-    srand(time(NULL));
-    int liczba = (rand() % 3) + 1;
-    switch (liczba)
-    {
-    case 1:
-        ball.moveUp();
-        break;
-    case 2:
-        ball.moveUp();
-        break;
-    case 3:
-        ball.moveUp();
-        break;
-    }
+    ball.update(paddle); // Wywo³anie funkcji update z obiektem Paddle
+    return true;
 
 }
 /// collisionTest6
@@ -106,7 +94,7 @@ bool collisionTest6(Block& block, Ball& ball)
 */
 bool isGameOver6(Ball& ball)
 {
-    if (ball.bottom() == 850)
+    if (ball.bottom() >= 850) // SprawdŸ, czy pi³ka znajduje siê poni¿ej dolnej krawêdzi okna
     {
         return true;
     }
@@ -187,6 +175,8 @@ int Poziom6::Start()
     unsigned blocksX{ 8 }, blocksY{ 6 }, blockWidth{ 70 }, blockHeight{ 30 };
     vector<Block> blocks;
     int numberOfBlocks = blocksX * blocksY;
+    int destroyedBlocks = 0; // Licznik zniszczonych bloków
+    bool isFlipped = false; // Flaga odwrócenia ekranu
 
     for (int i = 0; i < blocksY; i++)
     {
@@ -205,9 +195,13 @@ int Poziom6::Start()
     Sprite sprite6;
     sprite6.setTexture(Poziom6);
 
+    // Utwórz widok
+    View view = window.getDefaultView();
+
     while (window.isOpen())
     {
         window.clear();
+        window.setView(view); // Ustaw widok
         window.draw(sprite6);
         window.pollEvent(event);
 
@@ -217,9 +211,9 @@ int Poziom6::Start()
             break;
         }
 
-        ball.update();
         paddle.update();
-        collisionTest6(paddle, ball);
+        ball.update(paddle); // Przekazanie obiektu Paddle do funkcji update
+
         if (isGameOver6(ball) == true)
         {
             sound.stop();
@@ -261,12 +255,21 @@ int Poziom6::Start()
             if (collisionTest6(block, ball))
             {
                 numberOfBlocks--;
+                destroyedBlocks++; // Zwiêksz licznik zniszczonych bloków
                 break;
             }
         }
 
         auto iterator = remove_if(begin(blocks), end(blocks), [](Block& block) {return block.isDestroyed(); });
         blocks.erase(iterator, end(blocks));
+
+        // SprawdŸ, czy liczba zniszczonych bloków osi¹gnê³a 10, i odwróæ widok
+        if (destroyedBlocks >= 10 && !isFlipped)
+        {
+            view.setCenter(view.getSize() / 2.0f);
+            view.setRotation(180.0f); // Obróæ widok o 180 stopni
+            isFlipped = true; // Ustaw flagê odwrócenia ekranu
+        }
 
         if (numberOfBlocks == 0)
         {
@@ -301,7 +304,6 @@ int Poziom6::Start()
                 Super.display();
             }
             return 7;
-            break;
         }
 
         window.draw(ball);
@@ -315,3 +317,10 @@ int Poziom6::Start()
         window.display();
     }
 }
+
+
+
+
+
+
+

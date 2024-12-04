@@ -35,20 +35,8 @@ bool collisionTest2(Paddle& paddle, Ball& ball)
     if (!isIntersecting2(paddle, ball))
         return false;
 
-    srand(time(NULL));
-    int liczba = (rand() % 3) + 1;
-    switch (liczba)
-    {
-    case 1:
-        ball.moveUp();
-        break;
-    case 2:
-        ball.moveUp();
-        break;
-    case 3:
-        ball.moveUp();
-        break;
-    }
+    ball.update(paddle); // Wywołanie funkcji update z obiektem Paddle
+    return true;
 
 }
 /// collisionTest2
@@ -172,7 +160,7 @@ int Poziom2::Start()
     int finalHp = 2;
     int numberOfBlocks = blocksX * blocksY * finalHp;
     int hp = 0;
-    
+
     while (hp < finalHp)
     {
         for (int i = 0; i < blocksY; i++)
@@ -187,7 +175,7 @@ int Poziom2::Start()
             }
         }
         hp++;
-    }////////////////////////////////////////
+    }
 
     Texture Poziom2;
     Poziom2.loadFromFile("Textury/level2.png");
@@ -206,9 +194,9 @@ int Poziom2::Start()
             break;
         }
 
-        ball.update();
         paddle.update();
-        collisionTest2(paddle, ball);
+        ball.update(paddle); // Przekazanie obiektu Paddle do funkcji update
+
         if (isGameOver2(ball) == true)
         {
             sound.stop();
@@ -250,7 +238,6 @@ int Poziom2::Start()
             exit(1);
             return 0;
         }
-
 
         for (auto& block : blocks)
         {
@@ -299,7 +286,6 @@ int Poziom2::Start()
             return 3;
         }
 
-
         window.draw(ball);
         window.draw(paddle);
 
@@ -309,7 +295,7 @@ int Poziom2::Start()
         }
 
         window.display();
-
     }
-
 }
+
+

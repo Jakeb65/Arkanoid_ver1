@@ -16,7 +16,7 @@ Ball::Ball(float t_X, float t_Y)
 {
 	shape.setPosition(t_X, t_Y);
 	shape.setRadius(this->ballRadius);
-	shape.setFillColor(Color::Color(252, 52, 198));
+	shape.setFillColor(Color(252, 52, 198));
 	shape.setOrigin(this->ballRadius, this->ballRadius);
 }
 
@@ -46,7 +46,7 @@ void Ball::update()
 	{
 		velocity.x = ballVelocity + 1;
 	}
-	else if (this->right() > 1100)
+	else if (this->right() > 800)
 	{
 		velocity.x = -ballVelocity - 1;
 	}
@@ -54,7 +54,7 @@ void Ball::update()
 	{
 		velocity.y = ballVelocity + 1;
 	}
-	else if (this->bottom() > 825)
+	else if (this->bottom() > 600)
 	{
 		//velocity.y = -ballVelocity - 1;
 	}

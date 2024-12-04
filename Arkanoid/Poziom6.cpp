@@ -106,7 +106,7 @@ bool collisionTest6(Block& block, Ball& ball)
 */
 bool isGameOver6(Ball& ball)
 {
-    if (ball.bottom() == 850)
+    if (ball.bottom() == 600)
     {
         return true;
     }
@@ -157,20 +157,20 @@ bool isGameOver6(Ball& ball)
 */
 int Poziom6::Start()
 {
-    Ball ball(300, 400);
-    Paddle paddle(400, 790);
-    RenderWindow window(VideoMode(1100, 850), "Arcanoid - Poziom 6");
+    Ball ball(100, 270);
+    Paddle paddle(400, 550);
+    RenderWindow window(VideoMode(800, 600), "Arcanoid - Poziom 6");
     window.setFramerateLimit(60);
     Event event;
 
     RectangleShape tloPrzegrana;
-    tloPrzegrana.setSize(Vector2f(1100, 850));
+    tloPrzegrana.setSize(Vector2f(800, 600));
     Texture mainPrzegrana;
     mainPrzegrana.loadFromFile("Textury/przegrana.png");
     tloPrzegrana.setTexture(&mainPrzegrana);
 
     RectangleShape tloWygrana;
-    tloWygrana.setSize(Vector2f(1100, 850));
+    tloWygrana.setSize(Vector2f(800, 600));
     Texture mainWygrana;
     mainWygrana.loadFromFile("Textury/wygrana.png");
     tloWygrana.setTexture(&mainWygrana);
@@ -183,8 +183,7 @@ int Poziom6::Start()
     sound.setBuffer(buffer);
     sound.play();
 
-    window.setFramerateLimit(80); // Frame rate pozwala na zwiêkszenie tempa rozgrywki w tym prêdkoœci pi³ki czy paletki
-    unsigned blocksX{ 8 }, blocksY{ 6 }, blockWidth{ 70 }, blockHeight{ 30 };
+    unsigned blocksX{ 6 }, blocksY{ 4 }, blockWidth{ 30 }, blockHeight{ 15 };
     vector<Block> blocks;
     int numberOfBlocks = blocksX * blocksY;
 
@@ -192,11 +191,7 @@ int Poziom6::Start()
     {
         for (int j = 0; j < blocksX; j++)
         {
-            // Tworzenie bloku tylko na co drugim polu
-            if ((i + j) % 2 == 0)  // co drugie pole tworzy blok, reszta jest pusta
-            {
-                blocks.emplace_back((j + 1) * (blockWidth + 50), (i + 1) * (blockHeight + 25), blockWidth, blockHeight);
-            }
+            blocks.emplace_back((j + 1) * (blockWidth + 75), (i + 2) * (blockHeight + 30), blockWidth, blockHeight);
         }
     }
 
@@ -224,7 +219,7 @@ int Poziom6::Start()
         {
             sound.stop();
             window.close();
-            RenderWindow Super(VideoMode(1100, 850), "Przegrana");
+            RenderWindow Super(VideoMode(800, 600), "Przegrana");
             SoundBuffer bufferL;
             bufferL.loadFromFile("Audio/koniecAudio.wav");
             Sound soundL;
@@ -272,7 +267,7 @@ int Poziom6::Start()
         {
             sound.stop();
             window.close();
-            RenderWindow Super(VideoMode(1100, 850), "Wygrana");
+            RenderWindow Super(VideoMode(800, 600), "Wygrana");
             SoundBuffer bufferW;
             bufferW.loadFromFile("Audio/wygranaAudio.wav");
             Sound soundW;
@@ -301,7 +296,6 @@ int Poziom6::Start()
                 Super.display();
             }
             return 7;
-            break;
         }
 
         window.draw(ball);

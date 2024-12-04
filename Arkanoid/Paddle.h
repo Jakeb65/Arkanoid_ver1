@@ -14,29 +14,31 @@ using namespace std;
  * Implementacje wielkosci paletki szerokosc, wysokosc oraz predkosc
  * Zmienna wektorowa
 */
-class Paddle : public Drawable  /// tworzymy lase
+class Paddle : public Drawable
 {
-public: 
-	Paddle(float t_X, float t_Y);
-	Paddle() = delete;
-	~Paddle() = default;
+public:
+    Paddle(float t_X, float t_Y);
+    Paddle() = delete;
+    ~Paddle() = default;
 
-	void update();
+    void update();
 
-	float left();
-	float right();
-	float top();
-	float bottom();
+    float left();
+    float right();
+    float top();
+    float bottom();
 
-	Vector2f getPosition();
+    Vector2f getPosition();
+    float getWidth() const;
+    void setWidth(float width); // Dodaj tê liniê
+    FloatRect getBounds() const;
 
 private:
-	void draw(RenderTarget& target, RenderStates state) const override;
-	RectangleShape shape;
-	const float paddleWidth{ 80.0f };
-	const float paddleHeight{ 20.0f };
-	const float paddleVelocity{ 8.0f };
-	Vector2f velocity{ paddleVelocity, 0.f }; 
-
+    void draw(RenderTarget& target, RenderStates state) const override;
+    RectangleShape shape;
+    float paddleWidth{ 80.0f }; // Zmieñ const na zmienn¹
+    const float paddleHeight{ 20.0f };
+    const float paddleVelocity{ 8.0f };
+    Vector2f velocity{ paddleVelocity, 0.f };
 };
 

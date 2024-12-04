@@ -20,25 +20,25 @@ MainMenu::MainMenu(float width, float height)
 	mainMenu[0].setFillColor(Color::White);
 	mainMenu[0].setString("Graj");
 	mainMenu[0].setCharacterSize(45);
-	mainMenu[0].setPosition(505, 250);
+	mainMenu[0].setPosition(360, 160);
 
 	mainMenu[1].setFont(font);
 	mainMenu[1].setFillColor(Color::White);
 	mainMenu[1].setString("Ustawienia");
 	mainMenu[1].setCharacterSize(45);
-	mainMenu[1].setPosition(430, 310);
+	mainMenu[1].setPosition(280, 220);
 
 	mainMenu[2].setFont(font);
 	mainMenu[2].setFillColor(Color::White);
 	mainMenu[2].setString("O grze");
 	mainMenu[2].setCharacterSize(45);
-	mainMenu[2].setPosition(490, 370);
+	mainMenu[2].setPosition(340, 280);
 
 	mainMenu[3].setFont(font);
 	mainMenu[3].setFillColor(Color::White);
 	mainMenu[3].setString("Wyjscie");
 	mainMenu[3].setCharacterSize(45);
-	mainMenu[3].setPosition(475, 430);
+	mainMenu[3].setPosition(325, 340);
 
 	MainMenuSelected = -1;
 }

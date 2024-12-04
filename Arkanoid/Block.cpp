@@ -4,7 +4,9 @@
 * "#include "Block.h"" - plik naglowkowy
 */
 #include "Block.h"  // plik naglowkowy  plik o kafelkach block:: to ssa metody klasy 
-
+#include "Buff.h"
+#include <cstdlib> // dla rand() i srand()
+#include <ctime>   // dla time()
 ///Block::
 /**
 * Metoda klasy zawierajaca konstruktor
@@ -19,6 +21,9 @@ Block::Block(float t_X, float t_Y, float t_Width, float t_Height)
 	shape.setSize({ t_Width, t_Height });
 	shape.setFillColor(Color::Color(255, 0, 0));
 	shape.setOrigin(t_Width / 2.f, t_Height / 2.f);
+
+	// Inicjalizacja generatora losowego
+	std::srand(static_cast<unsigned>(std::time(nullptr)));
 }
 
 ///draw
@@ -97,9 +102,18 @@ bool Block::isDestroyed()
 * Funkcja niszczaca bloczek
 */
 
-void Block::destroy() ///funkja niszczy
+void Block::destroy()
 {
 	this->destroyed = true;
+
+	// Szansa na wygenerowanie buffa (np. 30%)
+	if (std::rand() % 100 < 30)
+	{
+		Buff::Type buffType = static_cast<Buff::Type>(std::rand() % 3);
+		Buff newBuff(buffType, shape.getPosition().x, shape.getPosition().y);
+		// Dodaj buff do listy buffów w grze (przykładowo)
+		// game.addBuff(newBuff);
+	}
 }
 
 ///getSize

@@ -8,8 +8,6 @@
 #include "Paddle.h"
 #include "Block.h"
 #include "MainMenu.h"
-#include <windows.h>
-#include <cstdlib>
 #include "Poziom4.h"
 #include <SFML/Audio.hpp>
 
@@ -93,7 +91,7 @@ bool collisionTest4(Block& block, Ball& ball)
 */
 bool isGameOver4(Ball& ball)
 {
-    if (ball.bottom() == 850)
+    if (ball.bottom() == 600)
     {
         return true;
     }
@@ -140,20 +138,20 @@ bool isGameOver4(Ball& ball)
 */
 int Poziom4::Start()
 {
-    Ball ball(200, 400);
-    Paddle paddle(400, 790);
-    RenderWindow window(VideoMode(1100, 850), "Arcanoid - Poziom 4");
+    Ball ball(100, 250);
+    Paddle paddle(400, 550);
+    RenderWindow window(VideoMode(800, 600), "Arcanoid - Poziom 4");
     window.setFramerateLimit(60);
     Event event;
 
     RectangleShape tloPrzegrana;
-    tloPrzegrana.setSize(Vector2f(1100, 850));
+    tloPrzegrana.setSize(Vector2f(800, 600));
     Texture mainPrzegrana;
     mainPrzegrana.loadFromFile("Textury/przegrana.png");
     tloPrzegrana.setTexture(&mainPrzegrana);
 
     RectangleShape tloWygrana;
-    tloWygrana.setSize(Vector2f(1100, 850));
+    tloWygrana.setSize(Vector2f(800, 600));
     Texture mainWygrana;
     mainWygrana.loadFromFile("Textury/wygrana.png");
     tloWygrana.setTexture(&mainWygrana);
@@ -167,8 +165,7 @@ int Poziom4::Start()
     sound.setPlayingOffset(sf::seconds(5.f));
     sound.play();
 
-    window.setFramerateLimit(80); // Frame rate pozwala na zwiêkszenie tempa rozgrywki w tym prêdkoœci pi³ki czy paletki
-    unsigned blocksX{ 8 }, blocksY{ 6 }, blockWidth{ 70 }, blockHeight{ 30 };
+    unsigned blocksX{ 8 }, blocksY{ 4 }, blockWidth{ 65 }, blockHeight{ 15 };
     vector<Block> blocks;
     int numberOfBlocks = blocksX * blocksY;
 
@@ -176,11 +173,7 @@ int Poziom4::Start()
     {
         for (int j = 0; j < blocksX; j++)
         {
-            // Tworzenie bloku tylko na co drugim polu
-            if ((i + j) % 2 == 0)  // co drugie pole tworzy blok, reszta jest pusta
-            {
-                blocks.emplace_back((j + 1) * (blockWidth + 50), (i + 1) * (blockHeight + 25), blockWidth, blockHeight);
-            }
+            blocks.emplace_back((j + 1) * (blockWidth + 20), (i + 2) * (blockHeight + 25), blockWidth, blockHeight);
         }
     }
 
@@ -208,7 +201,7 @@ int Poziom4::Start()
         {
             sound.stop();
             window.close();
-            RenderWindow Super(VideoMode(1100, 850), "Przegrana");
+            RenderWindow Super(VideoMode(800, 600), "Przegrana");
             SoundBuffer bufferL;
             bufferL.loadFromFile("Audio/koniecAudio.wav");
             Sound soundL;
@@ -257,7 +250,7 @@ int Poziom4::Start()
         {
             sound.stop();
             window.close();
-            RenderWindow Super(VideoMode(1100, 850), "Wygrana");
+            RenderWindow Super(VideoMode(800, 600), "Wygrana");
             SoundBuffer bufferW;
             bufferW.loadFromFile("Audio/wygranaAudio.wav");
             Sound soundW;

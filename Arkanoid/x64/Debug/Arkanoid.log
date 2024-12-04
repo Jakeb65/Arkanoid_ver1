@@ -1,34 +1,77 @@
-﻿  Poziom2.cpp
-C:\Users\Admin\source\repos\Arkanoid_kamien\Arkanoid\Poziom2.cpp(38,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
-C:\Users\Admin\source\repos\Arkanoid_kamien\Arkanoid\Poziom2.cpp(177,27): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\Admin\source\repos\Arkanoid_kamien\Arkanoid\Poziom2.cpp(179,31): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\Admin\source\repos\Arkanoid_kamien\Arkanoid\Poziom2.cpp(226,23): warning C4101: "aevent": lokalna zmienna, do której nie istnieje odwołanie
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xmemory(677,68): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\vector(798,27): message : zobacz odwołanie do kompilowanego tworzenia wystąpienia „void std::_Default_allocator_traits<_Alloc>::construct<_Ty,unsigned int,unsigned int,unsigned int&,unsigned int&>(_Alloc &,_Objty *const ,unsigned int &&,unsigned int &&,unsigned int &,unsigned int &)” funkcji szablon
-          with
-          [
-              _Alloc=std::allocator<Block>,
-              _Ty=Block,
-              _Objty=Block
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\vector(780,20): message : zobacz odwołanie do kompilowanego tworzenia wystąpienia „_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<unsigned int,unsigned int,unsigned int&,unsigned int&>(unsigned int &&,unsigned int &&,unsigned int &,unsigned int &)” funkcji szablon
-          with
-          [
-              _Ty=Block
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\vector(862,24): message : zobacz odwołanie do kompilowanego tworzenia wystąpienia „_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_one_at_back<unsigned int,unsigned int,unsigned int&,unsigned int&>(unsigned int &&,unsigned int &&,unsigned int &,unsigned int &)” funkcji szablon
-          with
-          [
-              _Ty=Block
-          ]
-C:\Users\Admin\source\repos\Arkanoid_kamien\Arkanoid\Poziom2.cpp(184,27): message : zobacz odwołanie do kompilowanego tworzenia wystąpienia „void std::vector<Block,std::allocator<Block>>::emplace_back<unsigned int,unsigned int,unsigned int&,unsigned int&>(unsigned int &&,unsigned int &&,unsigned int &,unsigned int &)” funkcji szablon
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xmemory(677,68): warning C4244: "argument": konwersja z "_Ty" do "float", możliwa utrata danych
-          with
-          [
-              _Ty=unsigned int
-          ]
-C:\Users\Admin\source\repos\Arkanoid_kamien\Arkanoid\Poziom2.cpp(89): warning C4715: "collisionTest2”: niewszystkie ścieżki kodu zwracają wartość
-C:\Users\Admin\source\repos\Arkanoid_kamien\Arkanoid\Poziom2.cpp(100): warning C4715: "isGameOver2”: niewszystkie ścieżki kodu zwracają wartość
-C:\Users\Admin\source\repos\Arkanoid_kamien\Arkanoid\Poziom2.cpp(314): warning C4715: "Poziom2::Start”: niewszystkie ścieżki kodu zwracają wartość
-C:\Users\Admin\source\repos\Arkanoid_kamien\Arkanoid\Poziom2.cpp(53): warning C4715: "collisionTest2”: niewszystkie ścieżki kodu zwracają wartość
-  Arkanoid.vcxproj -> C:\Users\Admin\source\repos\Arkanoid_kamien\x64\Debug\Arkanoid.exe
+﻿  Buff.cpp
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.h(6,7): error C2011: "Buff'': "class" wpisz ponownie definicję
+  (kompilowanie pliku źródłowego „Buff.cpp”)
+      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
+      zobacz deklarację „Buff”
+  
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(28,7): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
+      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
+      zobacz deklarację „Buff”
+  
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(28,7): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(28,12): error C2065: "Type": niezadeklarowany identyfikator
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(28,17): error C2146: błąd składniowy: brakuje „)” przed identyfikatorem „type”
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(28,43): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(29,1): error C2059: błąd składniowy: „{”
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(29,1): error C2143: błąd składniowy: brakuje „;” przed „{”
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(29,1): error C2447: "{": brak nagłówka funkcji (stary styl formalnej listy?)
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(35,12): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
+      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
+      zobacz deklarację „Buff”
+  
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(35,12): error C2270: "draw": modyfikatory niedozwolone dla funkcji niebędących funkcjami członkowskimi
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(37,17): error C2065: "shape": niezadeklarowany identyfikator
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(40,16): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
+      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
+      zobacz deklarację „Buff”
+  
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(40,16): error C2270: "getPosition": modyfikatory niedozwolone dla funkcji niebędących funkcjami członkowskimi
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(42,12): error C2065: "shape": niezadeklarowany identyfikator
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(45,7): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
+      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
+      zobacz deklarację „Buff”
+  
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(45,18): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
+      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
+      zobacz deklarację „Buff”
+  
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(45,7): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(45,18): error C2146: błąd składniowy: brakuje „;” przed identyfikatorem „getType”
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(46,1): error C2143: błąd składniowy: brakuje „;” przed „{”
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(46,1): error C2447: "{": brak nagłówka funkcji (stary styl formalnej listy?)
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(50,17): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
+      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
+      zobacz deklarację „Buff”
+  
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(50,17): error C2270: "getBounds": modyfikatory niedozwolone dla funkcji niebędących funkcjami członkowskimi
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(52,12): error C2065: "shape": niezadeklarowany identyfikator
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(55,12): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
+      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
+      zobacz deklarację „Buff”
+  
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(57,5): error C2065: "shape": niezadeklarowany identyfikator
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(57,19): error C2065: "speed": niezadeklarowany identyfikator
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(60,12): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
+      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
+      zobacz deklarację „Buff”
+  
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(60,12): error C2270: "==": modyfikatory niedozwolone dla funkcji niebędących funkcjami członkowskimi
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(62,12): error C2355: „this”: Można tworzyć odwołania wyłącznie wewnątrz niestatycznych funkcji składowych lub niestatycznych inicjatorów składowych danych
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(62,26): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
+      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
+      zobacz deklarację „Buff”
+  
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(62,40): error C2355: „this”: Można tworzyć odwołania wyłącznie wewnątrz niestatycznych funkcji składowych lub niestatycznych inicjatorów składowych danych
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(62,69): error C2027: wykorzystanie niezdefiniowanego przez użytkownika typu "Buff"
+      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.cpp(6,7):
+      zobacz deklarację „Buff”
+  
+  Poziom1.cpp
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Poziom1.cpp(44,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Poziom1.cpp(184,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Poziom1.cpp(186,27): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Poziom1.cpp(232,18): error C2039: „update”: nie jest składową elementu „Buff”
+      C:\Users\Savi\Desktop\Arkanoid\Arkanoid\Buff.h(6,7):
+      zobacz deklarację „Buff”
+  
+  Generowanie kodu...

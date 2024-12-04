@@ -12,12 +12,17 @@
 #include <windows.h>
 #include <cstdlib>
 #include <SFML/Audio.hpp>
+#include "Buff.h"
+#include <vector>
+#include <algorithm>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 using namespace sf;
 
 /// Szablon klasy
-/**
+/** 
 * Funkcja z 2 argumentami szablonowymi, uniwersalna funckja, pozwoli nam sprawdzać kolizje miedzy roznymi obiektami
 * Zwraca dana krawedz obiektu w pixelach
 */
@@ -50,7 +55,7 @@ bool collisionTest1(Paddle& paddle, Ball& ball)
         ball.moveUp();
         break;
     }
-
+    
 }
 /// collisionTest1
 /**
@@ -94,7 +99,7 @@ bool collisionTest1(Block& block, Ball& ball)
 */
 bool isGameOver1(Ball& ball)
 {
-    if (ball.bottom() >= 850)
+    if (ball.bottom() >= 600)
     {
         return true;
     }
@@ -113,7 +118,7 @@ bool isGameOver1(Ball& ball)
 * Ustalenie limitu klatek na sekunde
 * Stworzenie eventu
 * Stworzenie zawartosci bloczkow, okreslaja ich liczbe i wielkosc
-* Stworzenie wektora obiektu klasy
+* Stworzenie wektora obiektu klasy 
 * Implementacja liczby blokow
 * Petla for rysujaca blocki na ekranie
 * Stworzenie tekstur i dodanie kilku tekstur tla
@@ -142,28 +147,45 @@ bool isGameOver1(Ball& ball)
 * Otworz nowe okno z tlem i komunikatem
 * Zwroc wartosc 2
 * Narysuj na ekranie pilke, paletke i bloki
+* 
+* 
 */
+
+void Poziom1::applyBuff(const Buff& buff, Paddle& paddle, Ball& ball)
+{
+    switch (buff.getType())
+    {
+    case Buff::WiderPaddle:
+        paddle.setWidth(paddle.getWidth() * 1.5f); // Example of widening the paddle
+        break;
+    case Buff::MultipleBalls:
+        // Logic to add multiple balls
+        break;
+        // Handle other buffs
+    default:
+        break;
+    }
+}
+
+
 int Poziom1::Start()
 {
-    Ball ball(300, 400);
-    Paddle paddle(400, 790);
-    RenderWindow window(VideoMode(1100, 850), "Arcanoid - Poziom 1");
-
-    window.setFramerateLimit(80); // Frame rate pozwala na zwiększenie tempa rozgrywki w tym prędkości piłki czy paletki
+    Ball ball(300, 200);
+    Paddle paddle(400, 550);
+    RenderWindow window(VideoMode(800, 600), "Arcanoid - Poziom 1");
+    
+    window.setFramerateLimit(60);
     Event event;
-    unsigned blocksX{ 8 }, blocksY{ 6 }, blockWidth{ 70 }, blockHeight{ 30 };
+    unsigned blocksX{ 8 }, blocksY{ 4 }, blockWidth{ 65 }, blockHeight{ 20 };
     vector<Block> blocks;
+    vector<Buff> buffs; // Vector to store buffs
     int numberOfBlocks = blocksX * blocksY;
 
     for (int i = 0; i < blocksY; i++)
     {
         for (int j = 0; j < blocksX; j++)
         {
-            // Tworzenie bloku tylko na co drugim polu
-            if ((i + j) % 2 == 0)  // co drugie pole tworzy blok, reszta jest pusta
-            {
-                blocks.emplace_back((j + 1) * (blockWidth + 50), (i + 1) * (blockHeight + 25), blockWidth, blockHeight);
-            }
+            blocks.emplace_back((j + 1) * (blockWidth + 20), (i + 2) * (blockHeight + 10), blockWidth, blockHeight);
         }
     }
 
@@ -174,13 +196,13 @@ int Poziom1::Start()
     sprite1.setTexture(Poziom1);
 
     RectangleShape tloPrzegrana;
-    tloPrzegrana.setSize(Vector2f(1100, 850));
+    tloPrzegrana.setSize(Vector2f(800, 600));
     Texture mainPrzegrana;
     mainPrzegrana.loadFromFile("Textury/przegrana.png");
     tloPrzegrana.setTexture(&mainPrzegrana);
 
     RectangleShape tloWygrana;
-    tloWygrana.setSize(Vector2f(1100, 850));
+    tloWygrana.setSize(Vector2f(800, 600));
     Texture mainWygrana;
     mainWygrana.loadFromFile("Textury/wygrana.png");
     tloWygrana.setTexture(&mainWygrana);
@@ -192,27 +214,95 @@ int Poziom1::Start()
     Sound sound;
     sound.setBuffer(buffer);
     sound.play();
-
+    
     while (window.isOpen())
     {
-        window.clear();
-        window.draw(sprite1);
-        window.pollEvent(event);
-
-        if (event.type == Event::Closed)
+        while (window.pollEvent(event))
         {
-            window.close();
-            break;
+            if (event.type == Event::Closed)
+                window.close();
         }
 
         ball.update();
         paddle.update();
-        collisionTest1(paddle, ball);
+
+        // Update buffs positions
+        for (auto& buff : buffs)
+        {
+            buff.update();
+        }
+
+        // Check for collisions between the paddle and buffs
+        for (auto& buff : buffs)
+        {
+            if (paddle.getBounds().intersects(buff.getBounds()))
+            {
+                applyBuff(buff, paddle, ball);
+                // Remove the buff from the game
+                buffs.erase(std::remove(buffs.begin(), buffs.end(), buff), buffs.end());
+                break;
+            }
+        }
+
+        // Check for collisions between the ball and blocks
+        for (auto& block : blocks)
+        {
+            if (collisionTest1(block, ball))
+            {
+                numberOfBlocks--;
+                // Check if a buff should be generated
+                if (std::rand() % 100 < 30)
+                {
+                    Buff::Type buffType = static_cast<Buff::Type>(std::rand() % 5); // Updated to include new buffs
+                    buffs.emplace_back(buffType, block.getPosition().x, block.getPosition().y);
+                }
+                break;
+            }
+        }
+
+        auto iterator = remove_if(begin(blocks), end(blocks), [](Block& block) { return block.isDestroyed(); });
+        blocks.erase(iterator, end(blocks));
+
+        if (numberOfBlocks == 0)
+        {
+            sound.stop();
+            window.close();
+            RenderWindow Super(VideoMode(800, 600), "Wygrana");
+            SoundBuffer bufferW;
+            bufferW.loadFromFile("Audio/wygranaAudio.wav");
+            Sound soundW;
+            soundW.setBuffer(bufferW);
+            soundW.play();
+
+            while (Super.isOpen())
+            {
+                Event aevent;
+                while (Super.pollEvent(aevent))
+                {
+                    if (aevent.type == Event::Closed)
+                    {
+                        Super.close();
+                    }
+                    if (aevent.type == Event::KeyPressed)
+                    {
+                        if (aevent.key.code == Keyboard::Escape)
+                        {
+                            Super.close();
+                        }
+                    }
+                }
+                Super.clear();
+                Super.draw(tloPrzegrana);
+                Super.display();
+            }
+            return 2;
+        }
+
         if (isGameOver1(ball) == true)
         {
             sound.stop();
             window.close();
-            RenderWindow Super(VideoMode(1100, 850), "Przegrana");
+            RenderWindow Super(VideoMode(800, 600), "Przegrana");
             SoundBuffer bufferL;
             bufferL.loadFromFile("Audio/koniecAudio.wav");
             Sound soundL;
@@ -246,57 +336,8 @@ int Poziom1::Start()
             return -1;
         }
 
-
-        for (auto& block : blocks)
-        {
-            if (collisionTest1(block, ball))
-            {
-                numberOfBlocks--;
-                break;
-            }
-        }
-
-        auto iterator = remove_if(begin(blocks), end(blocks), [](Block& block) {return block.isDestroyed(); });
-        blocks.erase(iterator, end(blocks));
-
-        if (numberOfBlocks == 0)
-        {
-            sound.stop();
-            window.close();
-            RenderWindow Super(VideoMode(1100, 850), "Wygrana");
-            SoundBuffer bufferW;
-            bufferW.loadFromFile("Audio/wygranaAudio.wav");
-            Sound soundW;
-            soundW.setBuffer(bufferW);
-            soundW.play();
-
-            while (Super.isOpen())
-            {
-                Event aevent;
-                while (Super.pollEvent(aevent))
-                {
-                    if (aevent.type == Event::Closed)
-                    {
-                        Super.close();
-                    }
-                    if (aevent.type == Event::KeyPressed)
-                    {
-                        if (aevent.key.code == Keyboard::Escape)
-                        {
-                            Super.close();
-                        }
-                    }
-                }
-                Super.clear();
-                Super.draw(tloWygrana);
-                Super.display();
-
-            }
-            return 2;
-        }
-
-
-
+        window.clear();
+        window.draw(sprite1);
         window.draw(ball);
         window.draw(paddle);
 
@@ -305,8 +346,13 @@ int Poziom1::Start()
             window.draw(block);
         }
 
+        for (auto& buff : buffs)
+        {
+            window.draw(buff);
+        }
+
         window.display();
     }
+
+    return 0;
 }
-
-

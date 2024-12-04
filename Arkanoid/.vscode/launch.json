@@ -8,8 +8,13 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
+<<<<<<< HEAD
       "cwd": "c:/Users/Savi/Desktop/token/Arkanoid_ver1/Arkanoid",
       "program": "c:/Users/Savi/Desktop/token/Arkanoid_ver1/Arkanoid/build/Debug/outDebug",
+=======
+      "cwd": "c:/Users/Savi/Desktop/Arkanoid/Arkanoid",
+      "program": "c:/Users/Savi/Desktop/Arkanoid/Arkanoid/build/Debug/outDebug",
+>>>>>>> sprawny
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
